@@ -10,11 +10,18 @@
   <title>Weather Dashboard</title>
 </head>
 <body>
-  <div id="weather">
-    <div id="description"></div>
-    <h1 id="temp"></h1>
-    <div id="location"></div>
-  </div>
+  <main class="flex-row justify-space-between">
+    <div class="col-12 col-md-4"></div>
+  
+    <div class="col-12 col-md-8"></div>
+    <div class="card">
+      <h3 class="card-header">Search for a city</h3>
+      <form id="user-form" class="card-body">
+        <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+        <button type="submit" class="btn">Get User</button>
+      </form>
+    </div>
+  </main>
   <script src="./assets/js/homepage.js"></script>
     <!-- // future javascript -->
   </script>
