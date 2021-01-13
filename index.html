@@ -9,16 +9,24 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Weather Dashboard</title>
 </head>
+
+<body class="flex-column min-100-vh">
+  <header class="hero">
+    <h1 class="app-title"><i class="fab"></i> Weather Dashboard</h1>
+    <p>
+    </p>
+  </header>
+
 <body>
   <main class="flex-row justify-space-between">
     <div class="col-12 col-md-4"></div>
   
     <div class="col-12 col-md-8"></div>
     <div class="card">
-      <h3 class="card-header">Search for a city</h3>
+      <h3 class="card-header">Search for a city:</h3>
       <form id="user-form" class="card-body">
-        <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-        <button type="submit" class="btn">Get User</button>
+        <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
+        <button type="search" i class="fas fa-search"></button></i>
       </form>
     </div>
   </main>

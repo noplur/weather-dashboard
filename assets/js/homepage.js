@@ -96,4 +96,4 @@ cityWeatherContainerEl.appendChild(cityWeatherEl);
 };
 // add event listeners to forms
 
-userFormEl.addEventListener("submit", formSubmitHandler);
+userFormEl.addEventListener("search", formSubmitHandler);
