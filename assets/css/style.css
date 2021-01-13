@@ -1,7 +1,7 @@
 :root {
   --primary: #ffffff;
   --secondary: #000000;
-  --tertiary: #dcdcdc;
+  --tertiary: #f5f5f5;
 }
 
 * {
@@ -38,9 +38,10 @@ h6 {
   line-height: 1.25;
 }
 
-main {
-  margin: 20px auto;
-  width: 94%;
+.city-search {
+  margin-left: 10px;
+  padding-top: 10px;
+  margin-right: 10px;
   background-color: var(--tertiary);
 }
 
@@ -49,15 +50,21 @@ input {
 }
 
 button {
-  background-color: #3333ff;
+  background-color: #4d79ff;
   color: var(--primary);
   font-size: 20px;
 }
 
 button:hover {
   border-color: lightblue;
+  outline: lightblue;
 }
 
 p {
   font-size: 1.2rem;
+}
+
+/* CARDS */
+.card {
+  
 }

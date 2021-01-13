@@ -1,7 +1,7 @@
 // to be executed upon a form submission browser event
 
 var userFormEl = document.querySelector("#user-form");
-var nameInputEl = document.querySelector("#username");
+var nameInputEl = document.querySelector("#cityname");
 var cityNameSearchTerm = document.querySelector('#repo-search-term');
 var cityWeatherContainerEl = document.querySelector('#repos-container');
 
@@ -96,4 +96,4 @@ cityWeatherContainerEl.appendChild(cityWeatherEl);
 };
 // add event listeners to forms
 
-userFormEl.addEventListener("search", formSubmitHandler);
+userFormEl.addEventListener("submit", formSubmitHandler);
