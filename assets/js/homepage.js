@@ -1,31 +1,36 @@
 // to be executed upon a form submission browser event
 
 var userFormEl = document.querySelector("#user-form");
-var nameInputEl = document.querySelector("#cityname");
-var cityNameSearchTerm = document.querySelector('#repo-search-term');
-var cityWeatherContainerEl = document.querySelector('#repos-container');
+var cityNameEl = document.querySelector("#cityname");
+var cityWeatherContainerEl = document.querySelector("#city-list");
+var currentWeatherContainerEl = document.querySelector("current-weather");
+var APIkey = "d32377506e56284db17e72a06db9c9d8";
+
+// function for search bar
 
 var formSubmitHandler = function(event) {
   // prevent page from refreshing
       event.preventDefault();
 
 // get value from input element
-var cityName = nameInputEl.value.trim();
+var cityName = cityNameEl.value.trim();
 
 if (cityName) {
   getCityWeather(cityName);
 
   // clear old content
   cityWeatherContainerEl.textContent = "";
-  nameInputEl.value = "";
+  cityNameEl.value = "";
 } else {
   alert("Please enter a city");
 }
 };
 
+// function to get current weather for a city
+
 var getCityWeather = function(cityName) {
       // format the Open Weather api url
-      var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIkey;
+      var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIkey + "&units=imperial";
   
       // make a request to the url
     fetch(apiUrl)
@@ -33,7 +38,7 @@ var getCityWeather = function(cityName) {
       // request was successful
       if (response.ok) {
         response.json().then(function(data) {
-          displayCityWeather(data, user);
+          displayCityWeather(data, cityName);
         });
       } else {
         alert("Error: " + response.statusText);
@@ -45,55 +50,79 @@ var getCityWeather = function(cityName) {
     });
   };
 
-// function to display city weather
+// function to display current city weather
+var displayCityWeather = function(data, city) {
+  console.log(data)
 
-var displayCityWeather = function(cityWeather, searchTerm) {
+  // display city name
+  // display current time
+  // display icon representation of weather conditions
+  // display temperature
+  // display humidity 
+  // display wind speed
 
-  // check if api returned any repos
-if (cityWeather.length === 0) {
-  cityWeatherContainerEl.textContent = "No cities found.";
-  return;
-}
-  console.log(cityWeather);
-  console.log(searchTerm);
+  var weather = $(".current-weather")
+  var title = $("<h3>").addClass("card-header").text(`${data.name} (${moment().format('l')})`)
+  var temperature = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp +" °F")
+  var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity+"%")
+  var wind = $("<p>").addClass("card-text").text("Wind Speed: " + data.wind.speed + " MPH")
+  var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png")
 
-cityNameTerm.textContent = searchTerm;
+  // append city name, temperature, humidity and wind to display on page
+  title.append(icon)
+  weather.append(title)
+  weather.append(temperature)
+  weather.append(humidity)
+  weather.append(wind)
 
-// loop over weather for each city
-for (var i = 0; i < cityWeather.length; i++) {
-  // format city name
-  var cityName = cityWeather[i].owner.login + "/" + cityWeather[i].name;
+  // display UV-index
+  displayUVIndex(data.coord.lat,data.coord.lon)
 
-  // create a container for each weather for city
-  var cityWeatherEl = document.createElement("div");
-  cityWeatherEl.classList = "list-item flex-row justify-space-between align-center";
-
-  // create a span element to hold city name
-  var titleEl = document.createElement("span");
-  titleEl.textContent = cityName;
-
-  // append to container
-  cityWeatherEl.appendChild(titleEl);
-
-// create a status element
-var statusEl = document.createElement("span");
-statusEl.classList = "flex-row align-center";
-
-// check if current city weather has issues or not
-if (cityWeather[i].open_issues_count > 0) {
-  statusEl.innerHTML =
-    "<i class='fas fa-times status-icon icon-danger'></i>" + cityWeather[i].open_issues_count + " issue(s)";
-} else {
-  statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
+  
+  
 }
 
-// append to container
-cityWeatherEl.appendChild(statusEl);
+// function for UV-Index
+var displayUVIndex = function (lat, lon) {
+  fetch(`http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIkey}`)
+    .then(function(response) {
+      return response.json()
+    })
+    .then(function(data) {
+      console.log(data)
+      var UVtext = $("<p>").addClass("card-text").text("UV Index: " )
+      var UVIndex = $("<button>").addClass("btn btn-sm").text(data.value)
 
-// append container to the dom
-cityWeatherContainerEl.appendChild(cityWeatherEl);
+      // color that indicates whether the UV-index is favorable (1-2), moderate (3-7), or severe (8+)
+      if (data.value <3) {
+        UVIndex.addClass("btn-success")
+      }
+      else if (data.value <8) {
+        UVIndex.addClass("btn-warning")
+      }
+      else {
+        UVIndex.addClass("btn-danger")
+      }
+
+      // append UV-Index to display on page
+    UVtext.append(UVIndex)
+    $(".current-weather").append(UVtext)
+    });
+  
 }
-};
+
+// function for 5-day forcast for a city
+
+  // display date
+  // display icon representation of weather conditions
+  // display temperature
+  // display humidity
+
+// function to list search history
+
+// function to get current weather when user clicks on city in search history <list-group-item>
+
+
 // add event listeners to forms
 
 userFormEl.addEventListener("submit", formSubmitHandler);

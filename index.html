@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Weather Dashboard</title>
 </head>
@@ -20,21 +22,33 @@
 <body>
   <main class="flex-row justify-space-between">
     <div class="col-12 col-md-4">
-      
-    </div>
-  
-    <div class="col-12 col-md-8">
     <div class="card city-search">
       <h3 class="card-header">Search for a city:</h3>
       <form id="user-form" class="card-body">
         <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
         <button type="submit" i class="fas fa-search"></button></i>
       </form>
+    
+      <div class="card"></div>
+      <h3 class="card-header">Search History:</h3>
+      <ul id="city-list" class="list-group"></ul>
     </div>
+    </div>
+
+  <div class="col-12 col-md-8">
+    <div class="card current-weather">
+      <h3 class="card-header">Current city weather</h3>
+
+    </div>
+
+    <div class="card future-weather">
+      <h3 class="card-header">5-day forecast for a city</h3>
+
     </div>
   </main>
-  <script src="./assets/js/homepage.js"></script>
     <!-- // future javascript -->
-  </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./assets/js/homepage.js"></script>
 </body>
 </html>
