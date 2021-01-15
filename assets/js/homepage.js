@@ -17,6 +17,7 @@ var cityName = cityNameEl.value.trim();
 
 if (cityName) {
   getCityWeather(cityName);
+  getForecastWeather(cityName);  
 
   // clear old content
   cityWeatherContainerEl.textContent = "";
@@ -25,6 +26,33 @@ if (cityName) {
   alert("Please enter a city");
 }
 };
+
+
+
+
+ //*** getting city name from search */
+// pull value from input
+
+// save that value into variable
+
+// add that variable to an object that is inside an array
+
+// stringify array
+
+// send stringified array to local storage
+
+// pull array by JSON.parse array
+
+// prepend array (inside loop)- button inside the loop
+
+
+
+
+
+
+
+
+
 
 // function to get current weather for a city
 
@@ -77,10 +105,7 @@ var displayCityWeather = function(data, city) {
 
   // display UV-index
   displayUVIndex(data.coord.lat,data.coord.lon)
-
-  
-  
-}
+};
 
 // function for UV-Index
 var displayUVIndex = function (lat, lon) {
@@ -109,9 +134,59 @@ var displayUVIndex = function (lat, lon) {
     $(".current-weather").append(UVtext)
     });
   
-}
+};
 
-// function for 5-day forcast for a city
+// function for 5-day forcast for a city (need to loop 5 day forecast)
+
+var getForecastWeather = function(cityName) {
+  // format the Open Weather api url
+  var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIkey + "&units=imperial";
+
+  // make a request to the url
+fetch(apiUrl)
+.then(function(response) {
+  // request was successful
+  if (response.ok) {
+    response.json().then(function(data) {
+      displayForecastWeather(data, cityName);
+    });
+  } else {
+    alert("Error: " + response.statusText);
+  }
+})
+.catch(function(error) {
+  // Notice this `.catch()` getting chained onto the end of the `.then()` method
+  alert("Unable to connect to Open Weather");
+});
+};
+
+var displayForecastWeather = function(data, city) {
+  console.log(data)
+
+  // display city name
+  // display current time
+  // display icon representation of weather conditions
+  // display temperature
+  // display humidity 
+  // display wind speed
+
+  var weather = $(".future-weather")
+  var title = $("<h3>").addClass("card-header").text(`${data.name} (${moment().format('l')})`)
+  var temperature = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp +" °F")
+  var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity+"%")
+  var wind = $("<p>").addClass("card-text").text("Wind Speed: " + data.wind.speed + " MPH")
+  var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png")
+
+  // append city name, temperature, humidity and wind to display on page
+  title.append(icon)
+  weather.append(title)
+  weather.append(temperature)
+  weather.append(humidity)
+  weather.append(wind)
+};
+
+
+
 
   // display date
   // display icon representation of weather conditions
