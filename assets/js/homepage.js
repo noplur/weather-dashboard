@@ -145,7 +145,7 @@ var displayUVIndex = function (lat, lon) {
 
 var getForecastWeather = function(cityName) {
   // format the Open Weather api url
-  var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIkey + "&units=imperial";
+  var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + APIkey + "&units=imperial";
 
   // make a request to the url
 fetch(apiUrl)
@@ -171,7 +171,10 @@ fetch(apiUrl)
 
 var displayForecastWeather = function(data, city) {
   console.log(data)
+  for (i = 0; i < 5; i++) {
 
+    var newCard = $("<div>").attr("class", "col fiveDay bg-primary text-white rounded-lg p-2");
+                $(".future-weather").append(newCard);
   // display date
   // display icon representation of weather conditions
   // display temperature
@@ -189,6 +192,7 @@ var displayForecastWeather = function(data, city) {
   weather.append(temperature)
   weather.append(humidity)
   weather.append(wind)
+  }
 };
 
 
