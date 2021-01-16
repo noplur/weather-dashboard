@@ -176,26 +176,15 @@ var displayForecastWeather = function(data, city) {
   for (i = 0; i < 5; i++) {
 
     // creates the columns
-    var newCard = $("<div>").attr("class", "col-12 col-md-3 five-day bg-primary text-white rounded-lg p-2");
+    var newCard = $("<div>").attr("class", "col-12 col-md-2 five-day bg-primary text-white rounded-lg p-2");
     $(".future-weather").append(newCard);
-
-    
-
-    
-
-    
-     
-
-
-
 
   // display date
   // display icon representation of weather conditions
   // display temperature
   // display humidity
 
-  // var weather = $(".future-weather")
-  var title = $("<h3>").addClass("card-header").text(`${moment().add(i + 1, "days").format("M/D/YYYY")}`)
+  var title = $("<h4>").addClass("card-header").text(`${moment().add(i + 1, "days").format("M/D/YYYY")}`)
   var temperature = $("<p>").addClass("card-text").text("Temperature: " + data.list[0 + i].main.temp +" °F")
   var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.list[0 + i].main.humidity+"%")
   var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.list[0 + i].weather[0].icon + ".png")
