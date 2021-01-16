@@ -16,18 +16,44 @@ var formSubmitHandler = function(event) {
 // get value from input element
 var cityName = cityNameEl.value.trim();
 
+// functions to call when a city name is enterred
+
 if (cityName) {
   getCityWeather(cityName);
   getForecastWeather(cityName);  
+  cityHistory ();
 
   // clear old content
+
   cityWeatherContainerEl.textContent = "";
   cityNameEl.value = "";
+
+  // alert when a city name is not typed in
+
 } else {
   alert("Please enter a city");
 }
 };
 
+// function to make list of city search history
+function cityHistory () {
+
+  // get value from input element
+
+  var cityName = cityNameEl.value.trim();
+
+  // give <li> a class name
+
+  var listItem = $("<li>").addClass("list-group-item").text(cityName);
+
+    // append listItem to city-list class to display on page
+
+    $(".city-list").append(listItem);
+  
+  
+  // // onclick target
+  
+}
 
 
 

@@ -50,9 +50,9 @@ h6 {
 } */
 
 button {
-  background-color: #4d79ff;
+  background-color: royalblue;
   color: var(--primary);
-  font-size: 20px;
+  font-size: 24px;
 }
 
 button:hover {
