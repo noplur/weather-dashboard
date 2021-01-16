@@ -70,14 +70,18 @@ p {
   height: 100%;
 }
 
+.card-header {
+  margin-top: 15px;
+}
+
 .future-weather {
   justify-content: space-evenly;
 }
 
 /* CARDS */
-.card {
-  width: 100%;
-}
+/* .card-header {
+  margin-top: 10px;
+} */
 
 /* FORM */
 .form-input {
