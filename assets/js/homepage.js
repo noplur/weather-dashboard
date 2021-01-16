@@ -171,27 +171,40 @@ fetch(apiUrl)
 
 var displayForecastWeather = function(data, city) {
   console.log(data)
+
+    // displays 5 separate columns
   for (i = 0; i < 5; i++) {
 
-    var newCard = $("<div>").attr("class", "col fiveDay bg-primary text-white rounded-lg p-2");
-                $(".future-weather").append(newCard);
+    // creates the columns
+    var newCard = $("<div>").attr("class", "col-12 col-md-3 five-day bg-primary text-white rounded-lg p-2");
+    $(".future-weather").append(newCard);
+
+    
+
+    
+
+    
+     
+
+
+
+
   // display date
   // display icon representation of weather conditions
   // display temperature
   // display humidity
 
-  var weather = $(".future-weather")
-  var title = $("<h3>").addClass("card-header").text(`${data.name} (${moment().format('l')})`)
-  var temperature = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp +" °F")
-  var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity+"%")
-  var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png")
+  // var weather = $(".future-weather")
+  var title = $("<h3>").addClass("card-header").text(`${moment().add(i + 1, "days").format("M/D/YYYY")}`)
+  var temperature = $("<p>").addClass("card-text").text("Temperature: " + data.list[0 + i].main.temp +" °F")
+  var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.list[0 + i].main.humidity+"%")
+  var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.list[0 + i].weather[0].icon + ".png")
 
   // append city name, temperature, humidity and wind to display on page
   title.append(icon)
-  weather.append(title)
-  weather.append(temperature)
-  weather.append(humidity)
-  weather.append(wind)
+  newCard.append(title)
+  newCard.append(temperature)
+  newCard.append(humidity)
   }
 };
 

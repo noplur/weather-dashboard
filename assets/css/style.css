@@ -64,9 +64,16 @@ p {
   font-size: 1.2rem;
 }
 
+.five-day {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  width: 100%;
+}
+
 /* CARDS */
 .card {
-  
+  width: 100%;
 }
 
 /* FORM */
