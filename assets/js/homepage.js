@@ -59,6 +59,7 @@ var getCityWeather = function(cityName) {
 
         // removes city name from search history list if invalid city name is typed into search bar
         var listGroup = document.querySelector(".list-group-item");
+        
         listGroup.innerHTML = '';
       }
 
@@ -205,6 +206,7 @@ function cityHistory () {
 // searched cities buttons event listener
 
 $(".city-list").on("click", (event) => {
+  
 
   // prevent page from refreshing
 
