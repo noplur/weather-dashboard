@@ -32,41 +32,11 @@ if (cityName) {
   // alert when a city name is not typed in
 
 } else {
+
   alert("Please enter a city");
+
 }
 };
-
-// function to make list of city search history
-function cityHistory () {
-
-  // get value from input element
-
-  var cityName = cityNameEl.value.trim();
-
-  // give <li> a class name
-
-  var listItem = $("<li>").addClass("list-group-item").text(cityName);
-
-    // append listItem to city-list class to display on page
-
-    $(".city-list").append(listItem);
-  
-}
-
-// searched cities buttons event listener
-
-$(".city-list").on("click", (event) => {
-
-  // prevent page from refreshing
-
-  event.preventDefault();
-
-  // targets the cityname text element
-  $("#cityname").val(event.target.textContent);
-  
-  // restarts function to get function to get current weather and 5-day forecast
-  formSubmitHandler(event);
-});
 
 // function to get current weather for a city
 
@@ -82,9 +52,16 @@ var getCityWeather = function(cityName) {
         response.json().then(function(data) {
           displayCityWeather(data, cityName);
         });
+
+        // if invalid city name is typed into search bar
       } else {
         alert("Error: " + response.statusText);
+
+        // removes city name from search history list if invalid city name is typed into search bar
+        var listGroup = document.querySelector(".list-group-item");
+        listGroup.innerHTML = '';
       }
+
     })
     .then(function(response) {
       var currentWeatherContainerEl = document.querySelector('.current-weather');
@@ -168,9 +145,7 @@ fetch(apiUrl)
     response.json().then(function(data) {
       displayForecastWeather(data, cityName);
     });
-  } else {
-    alert("Error: " + response.statusText);
-  }
+  } 
 })
 .then(function(response) {
   var forecastContainerEl = document.querySelector('.future-weather');
@@ -209,6 +184,39 @@ var displayForecastWeather = function(data, city) {
   newCard.append(humidity)
   }
 };
+
+
+// function to make list of city search history
+function cityHistory () {
+
+  // get value from input element
+
+  var cityName = cityNameEl.value.trim();
+
+  // give <li> a class name
+
+  var listItem = $("<li>").addClass("list-group-item").text(cityName);
+
+    // append listItem to city-list class to display on page
+
+    $(".city-list").prepend(listItem);
+}
+
+// searched cities buttons event listener
+
+$(".city-list").on("click", (event) => {
+
+  // prevent page from refreshing
+
+  event.preventDefault();
+
+  // targets the cityname text element
+  $("#cityname").val(event.target.textContent);
+  
+  // restarts function to get function to get current weather and 5-day forecast
+  formSubmitHandler(event);
+  
+});
 
 
 // function to list search history
