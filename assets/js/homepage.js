@@ -65,8 +65,12 @@ var getCityWeather = function(cityName) {
 
     })
     .then(function(response) {
+
+      // clears current-weather div class so elements will not repeat when another city name is enterred.
+
       var currentWeatherContainerEl = document.querySelector('.current-weather');
       currentWeatherContainerEl.innerHTML = '';
+
     })
     .catch(function(error) {
       // Notice this `.catch()` getting chained onto the end of the `.then()` method
@@ -93,6 +97,7 @@ var displayCityWeather = function(data, city) {
   var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png")
 
   // append city name, temperature, humidity and wind to display on page
+
   title.append(icon)
   weather.append(title)
   weather.append(temperature)
@@ -149,8 +154,12 @@ fetch(apiUrl)
   } 
 })
 .then(function(response) {
+
+  // clears future-weather div class so elements will not repeat when another city name is enterred. 
+
   var forecastContainerEl = document.querySelector('.future-weather');
   forecastContainerEl.innerHTML = '';
+  
 })
 .catch(function(error) {
   // Notice this `.catch()` getting chained onto the end of the `.then()` method
@@ -160,6 +169,11 @@ fetch(apiUrl)
 
 var displayForecastWeather = function(data, city) {
   console.log(data)
+
+  // add 5-Day Forecast title when city name is enterred. Title includes h3 header and takes up entire row within card
+
+  var forecastTitle = $("<h3>").addClass("forecast-title").attr("class", "col-12 col-md-12 mb-3").text("5-Day Forecast:");
+  $(".row").append(forecastTitle);
 
     // displays 5 separate columns
   for (i = 0; i < 5; i++) {
@@ -174,7 +188,7 @@ var displayForecastWeather = function(data, city) {
   // display humidity
 
   var title = $("<h4>").addClass("card-header").text(`${moment().add(i + 1, "days").format("M/D/YYYY")}`)
-  var temperature = $("<p>").addClass("card-text").text("Temperature: " + data.list[0 + i].main.temp +" °F")
+  var temperature = $("<p>").addClass("card-text").text("Temp: " + data.list[0 + i].main.temp +" °F")
   var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.list[0 + i].main.humidity+"%")
   var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.list[0 + i].weather[0].icon + ".png")
 
@@ -219,12 +233,6 @@ $(".city-list").on("click", (event) => {
   formSubmitHandler(event);
   
 });
-
-
-// function to list search history
-
-// function to get current weather when user clicks on city in search history <list-group-item>
-
 
 // add event listeners to forms
 
