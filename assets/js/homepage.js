@@ -7,6 +7,8 @@ var currentWeatherContainerEl = document.querySelector("current-weather");
 var forecastContainerEl = document.querySelector("future-weather");
 var APIkey = "d32377506e56284db17e72a06db9c9d8";
 
+
+
 // function for search bar
 
 var formSubmitHandler = function(event) {
@@ -25,7 +27,6 @@ if (cityName) {
 
   // clear old content
 
-  cityWeatherContainerEl.textContent = "";
   cityNameEl.value = "";
 
   // alert when a city name is not typed in
@@ -50,36 +51,22 @@ function cityHistory () {
 
     $(".city-list").append(listItem);
   
-  
-  // // onclick target
-  
 }
 
+// searched cities buttons event listener
 
+$(".city-list").on("click", (event) => {
 
- //*** getting city name from search */
-// pull value from input
+  // prevent page from refreshing
 
-// save that value into variable
+  event.preventDefault();
 
-// add that variable to an object that is inside an array
-
-// stringify array
-
-// send stringified array to local storage
-
-// pull array by JSON.parse array
-
-// prepend array (inside loop)- button inside the loop
-
-
-
-
-
-
-
-
-
+  // targets the cityname text element
+  $("#cityname").val(event.target.textContent);
+  
+  // restarts function to get function to get current weather and 5-day forecast
+  formSubmitHandler(event);
+});
 
 // function to get current weather for a city
 
