@@ -64,6 +64,10 @@ p {
   font-size: 1.2rem;
 }
 
+.city-list:hover {
+  cursor: pointer;
+}
+
 .five-day {
   padding-left: 10px;
   padding-right: 10px;
