@@ -60,7 +60,7 @@ var getCityWeather = function(cityName) {
         // removes city name from search history list if invalid city name is typed into search bar
         var listGroup = document.querySelector(".list-group-item");
         
-        listGroup.innerHTML = '';
+        listGroup.style.display = 'none';
       }
 
     })
@@ -210,17 +210,18 @@ function cityHistory () {
 
   // give <li> a class name
 
-  var listItem = $("<li>").addClass("list-group-item").text(cityName);
+  var listItem = $("<li>").addClass("list-group-item list-group-item-action").text(cityName);
 
     // append listItem to city-list class to display on page
 
-    $(".city-list").prepend(listItem);
-}
+
+  $(".city-list").prepend(listItem);
+
+  }
 
 // searched cities buttons event listener
 
-$(".city-list").on("click", (event) => {
-  
+$(".city-list").click(function(event) {
 
   // prevent page from refreshing
 
@@ -231,6 +232,12 @@ $(".city-list").on("click", (event) => {
   
   // restarts function to get function to get current weather and 5-day forecast
   formSubmitHandler(event);
+
+  // removes city name from search history so it is not repeated
+
+  var listGroup = document.querySelector(".list-group-item");
+        
+  listGroup.style.display = 'none';
   
 });
 
