@@ -18,6 +18,8 @@ body {
   font-size: 16px;
 }
 
+/* stylizing for header */
+
 header {
   background-color: var(--secondary);
   color: var(--primary);
@@ -29,14 +31,14 @@ header {
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4 {
   font-weight: 700;
   margin: 0;
   color: var(--secondary #000000);
   line-height: 1.25;
 }
+
+/* stylizing for search bar */
 
 .city-search {
   margin-left: 10px;
@@ -44,10 +46,6 @@ h6 {
   margin-right: 10px;
   background-color: var(--tertiary);
 }
-
-/* input {
-  font-size: 20px;
-} */
 
 button {
   background-color: royalblue;
@@ -64,9 +62,13 @@ p {
   font-size: 1.2rem;
 }
 
+/* stylizing for city list */
+
 .city-list:hover {
   cursor: pointer;
 }
+
+/* stylizing for header */
 
 .five-day {
   padding-left: 10px;
@@ -80,25 +82,6 @@ p {
 
 .future-weather {
   justify-content: space-evenly;
-}
-
-/* CARDS */
-/* .card-header {
-  margin-top: 10px;
-} */
-
-/* FORM */
-.form-input {
-    font-size: 20px;
-}
-
-/* HEIGHT / WIDTH UTILS */
-.min-100-vh {
-  min-height: 100vh;
-}
-
-.min-100-vw {
-  min-width: 100vw;
 }
 
 /* FLEX CONTENT */
@@ -145,54 +128,34 @@ p {
   align-items: center;
 }
 
-.col-auto {
-  flex-grow: 1;
+/* Media query for 1466px */
+
+@media screen and (max-width: 1466px) {
+  .card-header {
+    display: inline;
+  }
 }
 
-.col-1 {
-  flex: 0 0 calc(100% * 1 / 12 - 2%);
+/* Media query for 1290px */
+
+@media screen and (max-width: 1290px) {
+  .card-header {
+    display: grid;
+  }
 }
 
-.col-2 {
-  flex: 0 0 calc(100% * 2 / 12 - 2%);
+/* Media query for 1220px */
+
+@media screen and (max-width: 1220px) {
+  .card-header {
+    display: inline;
+  }
 }
 
-.col-3 {
-  flex: 0 0 calc(100% * 3 / 12 - 2%);
-}
+/* Media query for 780px */
 
-.col-4 {
-  flex: 0 0 calc(100% * 4 / 12 - 2%);
-}
-
-.col-5 {
-  flex: 0 0 calc(100% * 5 / 12 - 2%);
-}
-
-.col-6 {
-  flex: 0 0 calc(100% * 6 / 12 - 2%);
-}
-
-.col-7 {
-  flex: 0 0 calc(100% * 7 / 12 - 2%);
-}
-
-.col-8 {
-  flex: 0 0 calc(100% * 8 / 12 - 2%);
-}
-
-.col-9 {
-  flex: 0 0 calc(100% * 9 / 12 - 2%);
-}
-
-.col-10 {
-  flex: 0 0 calc(100% * 10 / 12 - 2%);
-}
-
-.col-11 {
-  flex: 0 0 calc(100% * 11 / 12 - 2%);
-}
-
-.col-12 {
-  flex: 0 0 100%;
+@media screen and (max-width: 780px) {
+  .card-header {
+    display: contents;
+  }
 }

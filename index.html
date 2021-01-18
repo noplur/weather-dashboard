@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<!-- begin head -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,35 +12,47 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Weather Dashboard</title>
 </head>
+<!-- end head -->
 
+<!-- begin body -->
 <body class="flex-column min-100-vh">
+  <!-- begin header -->
   <header class="hero">
     <h1 class="app-title"><i class="fab"></i> Weather Dashboard</h1>
     <p>
     </p>
   </header>
+  <!-- end header -->
 
 <body>
+  <!-- begin main class -->
+  
   <main class="flex-row justify-space-between">
+    <!-- div for columns on left side of page -->
     <div class="col-12 col-md-4">
+    <!-- div for city search card -->
     <div class="card city-search">
       <h3 class="card-header">Search for a city:</h3>
+      <!-- form for city search -->
       <form id="user-form" class="card-body">
         <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
         <button type="submit" i class="fas fa-search"></button></i>
       </form>
     
+      <!-- div for list of city search history -->
       <div class="card"></div>
       <ul class="city-list list-group text-capitalize"></ul>
     </div>
     </div>
 
+  <!-- div for columns on right side of page -->
   <div class="col-12 col-md-8">
+    <!-- card for current weather -->
     <div class="card current-weather">
       <h3 class="card-header"></h3>
 
     </div>
-
+    <!-- card for future weather -->
     <div class="card mt-3">
     <!-- created new div for "future-weather" so it won't get cleared with innerHTML-->
     <!-- add row class so forecast collumns will be arranged left-to-right -->
@@ -49,9 +62,11 @@
     </div>
   </div>
   </main>
+  <!-- end main class -->
     <!-- // future javascript -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./assets/js/homepage.js"></script>
 </body>
+<!-- end body -->
 </html>
