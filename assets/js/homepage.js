@@ -199,7 +199,7 @@ var displayForecastWeather = function(data, city) {
   var title = $("<h4>").addClass("card-header").text(`${moment().add(i + 1, "days").format("M/D/YYYY")}`)
   var temperature = $("<p>").addClass("card-text").text("Temp: " + data.list[0 + i].main.temp +" °F")
   var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.list[0 + i].main.humidity+"%")
-  var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.list[0 + i].weather[0].icon + ".png")
+  var icon = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.list[0 + i].weather[0].icon + ".png")
 
   // append city name, future temperature and future humidity to display on page
   title.append(icon)
