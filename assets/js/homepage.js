@@ -120,7 +120,7 @@ var displayUVIndex = function (lat, lon) {
       // return the response as JSON
       return response.json()
     })
-    // function for what to do with UV-Index data
+    // function for what to do with UV Index data
     .then(function(data) {
       console.log(data)
       // add a class to the UV-Index data
