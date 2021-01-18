@@ -114,13 +114,13 @@ var displayCityWeather = function(data, city) {
 var displayUVIndex = function (lat, lon) {
 
   // format the Open Weather api url
-  fetch(`http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIkey}`)
+  fetch(`https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIkey}`)
 
     .then(function(response) {
       // return the response as JSON
       return response.json()
     })
-    // function for what to do with UV Index data
+    // function for what to do with UV-Index data
     .then(function(data) {
       console.log(data)
       // add a class to the UV-Index data
