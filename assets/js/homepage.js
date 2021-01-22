@@ -7,6 +7,26 @@ var currentWeatherContainerEl = document.querySelector("current-weather");
 var forecastContainerEl = document.querySelector("future-weather");
 var APIkey = "d32377506e56284db17e72a06db9c9d8";
 
+// function so cityName is not lost on browser refresh
+
+var startGetLocalStorage = function () {
+  var local = JSON.parse(localStorage.getItem("cities")) || []
+
+  local.forEach (function (cityName) {
+
+    // give <li> a class name
+  
+    var listItem = $("<li>").addClass("list-group-item list-group-item-action").text(cityName);
+  
+    // prepend listItem to city-list class to display on page
+  
+    $(".city-list").prepend(listItem);
+  
+    })
+}
+
+startGetLocalStorage ();
+
 // function for search bar
 
 var formSubmitHandler = function(event) {
@@ -22,7 +42,6 @@ var formSubmitHandler = function(event) {
     if (cityName) {
     getCityWeather(cityName);
     getForecastWeather(cityName);  
-    cityHistory ();
 
     // clear old search (city name) content
 
@@ -52,6 +71,7 @@ var getCityWeather = function(cityName) {
       if (response.ok) {
           response.json().then(function(data) {
           displayCityWeather(data, cityName);
+          cityHistory (cityName);
         });
 
         // if invalid city name is typed into search bar
@@ -146,7 +166,7 @@ var displayUVIndex = function (lat, lon) {
   
 };
 
-// function for 5-day forcast for a city  *** need to loop 5 day forecast ***
+// function for 5-day forecast for a city  *** need to loop 5 day forecast ***
 
 var getForecastWeather = function(cityName) {
   // format the Open Weather api url
@@ -179,7 +199,7 @@ var getForecastWeather = function(cityName) {
 var displayForecastWeather = function(data, city) {
   console.log(data)
 
-  // add 5-Day Forecast title when city name is enterred. Title includes h3 header and takes up entire row within card
+  // add 5-Day Forecast title when city name is entered. Title includes h3 header and takes up entire row within card
 
   var forecastTitle = $("<h3>").addClass("forecast-title").attr("class", "col-12 col-md-12 mb-3").text("5-Day Forecast:");
   $(".row").append(forecastTitle);
@@ -210,20 +230,41 @@ var displayForecastWeather = function(data, city) {
 };
 
 // function to make list of city search history
-function cityHistory () {
+function cityHistory (cityName) {
 
-  // get value from input element
+  // save city name to local storage
 
-  var cityName = cityNameEl.value.trim();
+  // make local storage an array ([] if there is nothing inside cities)
 
-  // give <li> a class name
+  var local = JSON.parse(localStorage.getItem("cities")) || []
 
-  var listItem = $("<li>").addClass("list-group-item list-group-item-action").text(cityName);
+  // push cityName onto local array
 
-  // prepend listItem to city-list class to display on page
+  local.push(cityName)
 
-  $(".city-list").prepend(listItem);
+  // creates version of local that does not have duplicate
 
+  var newLocal = [...new Set(local)]
+
+  // set the state
+
+  localStorage.setItem("cities", JSON.stringify(newLocal))
+
+  // if statement for if newLocal.length = local.length
+
+  $(".city-list").html("");
+
+  newLocal.forEach (function (city) {
+
+    // give <li> a class name
+  
+    var listItem = $("<li>").addClass("list-group-item list-group-item-action").text(city);
+  
+    // prepend listItem to city-list class to display on page
+  
+    $(".city-list").prepend(listItem);
+  
+    })
   }
 
 // searched cities buttons event listener
@@ -235,10 +276,12 @@ $(".city-list").click(function(event) {
   event.preventDefault();
 
   // targets the cityname text element
-  $("#cityname").val(event.target.textContent);
+  var cityName = (event.target.textContent);
+  console.log(cityName);
   
   // restarts function to get function to get current weather and 5-day forecast
-  formSubmitHandler(event);
+    getCityWeather(cityName);
+    getForecastWeather(cityName);  
 
   // removes city name from search history so it is not repeated
 
