@@ -5,5 +5,5 @@
 ### The GitHub repository for the Weather Dashboard can be viewed here: https://github.com/noplur/weather-dashboard
 ### The link to the website of the Weather Dashboard can be viewed here: https://noplur.github.io/weather-dashboard/
 
-### Here is a screenshot of the workday scheduler:
+### Here is a screenshot of the Weather Dashboard:
 ### ![](./assets/weather-dashboard.jpg)
